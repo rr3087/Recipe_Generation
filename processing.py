@@ -47,7 +47,7 @@ stemmer = PorterStemmer()
 units = ['tsp','teaspoon','cup','gill','drop','tbsp','tablespoon','pt','pint','dash',
 		'oz','ounce','fl oz','fluid','qt','quart','gram','gal','gallon','lb','pound',
 		'pottle','peck','bushel','pinch','degrees F','degrees C','inch','package', 
-		'piece', 'can', 'bunch', 'jar']
+		'piece','can','bunch','jar','liter','milliliter','bottle']
 units = [stemmer.stem(i) for i in units]
 
 # keep only nouns and adjectives
@@ -101,6 +101,12 @@ with open('recipe_ingred.csv', 'wb') as myfile2:
 		
 ## Futher Cleaning (part of ingredients were manually selected/removed)
 nodeDF = pd.read_csv("/Users/Jiajia/Google Drive/Columbia/Big Data/raw_nodes.csv", header=None, names=['ingredients'])
+
+# remove irrelevant words not detected in previous steps
+anywhere = ['miniature','halves','solid pack','optional','container','skewer']
+for i in range(nodeDF.count()):
+	nodeDF.ingredients.iloc[i] = re.sub('(%s)' % '|'.join(anywhere), '', nodeDF.ingredients.iloc[i])
+	nodeDF.ingredients.iloc[i] = re.sub('\s{2,}', ' ', nodeDF.ingredients.iloc[i]).strip(' ')	
 
 # convert all words to singular form; modify mis-converted words
 for i in range(nodeDF.count()):
