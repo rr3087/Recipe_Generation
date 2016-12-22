@@ -15,21 +15,19 @@ n = S.shape[0]
 total = np.trace(np.linalg.matrix_power(S, 2))
 
 # k = 300, 71% energy retained
-k = 400
+k = 300
 for i in range(n-k):
 	S[n-i-1][n-i-1] = 0
-
 percent = np.trace(np.linalg.matrix_power(S, 2)) / total
 print percent
 
 reducedS = S[:k,:k]
 reducedV = V[:k, ]
 factor = np.dot(np.linalg.inv(reducedS), reducedV)
-print V
-print U
-#np.save('SVDfactor_k400.npy', factor)
+np.save('SVDfactor_k300.npy', factor)
 
 '''
+# plot dimension vs percentage of energy retained
 pct = []
 s2 = []
 for k in np.arange(40, 800, 20): 
@@ -45,7 +43,7 @@ plt.plot(k, pct, marker='o')
 plt.show()
 '''
 
-## Incorporate Network Features to Original Dataset
+## Incorporate Network Features into Original Dataset
 nodeDF = pd.read_csv("/Users/Jiajia/Google Drive/Columbia/Big Data/Nodes.csv", header=None, names=['id','ingredients'])
 
 occurin = []
@@ -76,9 +74,9 @@ featureDF['btw.centrality'] = pd.Series(betweenness)
 featureDF['eigen.centrality'] = pd.Series(eigenvector)
 
 myrecipes = pd.read_csv("/Users/Jiajia/Google Drive/Columbia/Big Data/Recipes.csv")
-myrecipes = myrecipes[['made_it_count', 'rating']].iloc[:14996, :]
+myrecipes = myrecipes[['made_it_count', 'rating']]
 myrecipes = myrecipes.join(featureDF)
 print myrecipes.head(5)
 
-myrecipes.to_csv('recipes_1218_k400.csv', encoding='utf8')
+myrecipes.to_csv('features_k300.csv', encoding='utf8')
 
