@@ -18,31 +18,31 @@ SGBT
 We provided python implementation for our recipe generator. To be able to run the package, one need to first download the pre-stored file containing nodes (Nodes.csv) and edges (Edges.csv), pre-trained boosted tree model (SGBT directory), and network features (features.csv, SVDfactor.npy). Users can then run the python script generator.py to see the results.
 
 ### generator.py: 
-recipe generator (to speed up, users need to have an initial run of the program to generate clique.json file. For the future runs, users can ingore this step and simply load clique file)
-
-After the generator is initiated, users will first be asked to input one or two ingredients they would like to try (separated by comma and no space allowed after the comma). If they are not satisfied with the suggested recipe, a new recipe will be generated until the generator produces one that the users like. If the user input consists of unusual ingredient combinations that are considered unachievable as stated in section 4.4 (2), users will be asked to input another set of ingredients. 
+recipe generator
++ To speed up, users need to have an initial run of the program to generate clique.json file. For the future runs, users can ingore this step and simply load the clique file.
++ After the generator is initiated, users will first be asked to input one or two ingredients they would like to try (separated by comma and no space allowed after the comma). If they are not satisfied with the suggested recipe, a new recipe will be generated until the generator produces one that the users like. If the user input consists of unusual ingredient combinations that are considered unachievable as stated in section 4.4 (2), users will be asked to input another set of ingredients. 
 
 ### sgbt.ipynb:
 rating prediction with stochastic gradient boosted trees
 
 To set up pyspark in ipynb:
-Follow:  http://ramhiser.com/2015/02/01/configuring-ipython-notebook-support-for-pyspark/
-+ use 
++ Follow:  http://ramhiser.com/2015/02/01/configuring-ipython-notebook-support-for-pyspark/
++ Use 
 `PYSPARK_DRIVER_PYTHON=ipython PYSPARK_DRIVER_PYTHON_OPTS='notebook' $SPARK_HOME/bin/pyspark`
 will launch pyspark within ipython notebook.
 
-### scraping.py
+### scraping.py:
 scraping recipes from allrecipes.com
 
-### processing.py
+### processing.py:
 text processing with Spark and nltk
 
-### network.py
+### network.py:
 network construction
 
-### Community.R
+### Community.R:
 network centrality and community detection
 
-### lsa.py
+### lsa.py:
 network feature extraction with PMI
 
