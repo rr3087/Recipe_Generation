@@ -61,7 +61,7 @@ def get_cliques(nodes, cliques):
 def k_shortest_paths(G, source, target, k):
     return list(islice(nx.shortest_simple_paths(G, source, target), k))
 
-
+'''
 def binary(data): 
 	n = nodeDF.count()['ingredients']
 	ingFeature = np.zeros(n)
@@ -83,7 +83,7 @@ def get_rating(data, model):
 	data = sc.parallelize(features)
 	predictions = model.predict(data.map(lambda x: x.features)).collect()
 	return predictions
-
+'''
 
 def clean_output(clist):
 
@@ -146,8 +146,7 @@ def Generator(nodes):
 				for i in range(len(nodes)):					
 					cintsc.append(nodes[i])
 	
-				rating = get_rating(cintsc, model)
-				print rating
+				#rating = get_rating(cintsc, model)
 				#if rating < 4.3:
 				#	continue
 
@@ -165,14 +164,12 @@ def Generator(nodes):
 			r = np.random.randint(0, len(clist))
 			rdclique = clist[r]
 
-			rating = get_rating(rdclique, model)
-			print rating
-			if rating < 4.3:
-				continue
+			#rating = get_rating(rdclique, model)
+			#if rating < 4.3:
+			#	continue
 
 			clean_output(rdclique)
 			
-
 			fdback = raw_input(prompt)
 			if fdback == "yes":
 				print "Yay!"
@@ -189,16 +186,18 @@ if __name__ == '__main__':
 	G = nx.read_weighted_edgelist("Edges.csv", delimiter=',', create_using=nx.Graph(), nodetype=int)
 	#print nx.info(G)
 	
-	#cliques = list(nx.find_cliques(G))
-	#with open("cliques", "w") as f:
-	#	json.dump(cliques, f)
+	# In the future runs, comment this part after clique file is generated
+	cliques = list(nx.find_cliques(G))
+	with open("cliques", "w") as f:
+		json.dump(cliques, f)
 
 	conf = SparkConf().setAppName("PySpark Recipe Generation Project")
 	sc = SparkContext(conf=conf)
 	model = GradientBoostedTreesModel.load(sc, "SGBT")
-
-	with open("cliques") as f:
-		cliques = json.load(f)
+	
+	# Uncomment the following part for the future runs
+	#with open("cliques") as f:
+	#	cliques = json.load(f)
 
 	print "Welcome! This is a recipe generator."
 	print "What would you like to have today? We create recipes to your taste!"
