@@ -1,0 +1,12 @@
+ran process_csv and then manually removed the headers (row and column headers)
+then follow sgbt.ipnyb
+
+Results are stable.
+
+
+To set up pyspark in ipynb:
+Follow:  http://ramhiser.com/2015/02/01/configuring-ipython-notebook-support-for-pyspark/
++ use 
+
+`PYSPARK_DRIVER_PYTHON=ipython PYSPARK_DRIVER_PYTHON_OPTS='notebook' $SPARK_HOME/bin/pyspark`
+will launch pyspark within ipython notebook.
