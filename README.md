@@ -1,6 +1,6 @@
-# Recipe_Generation
+# Recipe Generation Based on Ingredient Network
 
-This is a project for Big Data Analytics at Columbia University.
+This is a project for course EECS6893 Big Data Analytics at Columbia University.
 
 ## Project Overview
 Recipe recording and sharing has been around for many years. Recipe collections containing ingredient combinations yield information about cooking fundamentals and user preferences. We construct an ingredient network to study the importance of each ingredient, capture the relationships between ingredients and explore reasonable combinations. We also perform experiments, to predict ratings of newly generated recipes using features derived from the network and accordingly suggest the recipes to the user. 
@@ -22,15 +22,6 @@ recipe generator
 + To speed up, users need to have an initial run of the program to generate clique.json file. For the future runs, users can ingore this step and simply load the clique file.
 + After the generator is initiated, users will first be asked to input one or two ingredients they would like to try (separated by comma and no space allowed after the comma). If they are not satisfied with the suggested recipe, a new recipe will be generated until the generator produces one that the users like. If the user input consists of unusual ingredient combinations that are considered unachievable as stated in section 4.4 (2), users will be asked to input another set of ingredients. 
 
-### sgbt.ipynb:
-rating prediction with stochastic gradient boosted trees
-
-To set up pyspark in ipynb:
-+ Follow:  http://ramhiser.com/2015/02/01/configuring-ipython-notebook-support-for-pyspark/
-+ Use 
-`PYSPARK_DRIVER_PYTHON=ipython PYSPARK_DRIVER_PYTHON_OPTS='notebook' $SPARK_HOME/bin/pyspark`
-will launch pyspark within ipython notebook.
-
 ### scraping.py:
 scraping recipes from allrecipes.com
 
@@ -40,9 +31,17 @@ text processing with Spark and nltk
 ### network.py:
 network construction
 
-### Community.R:
+### community.R:
 network centrality and community detection
 
 ### lsa.py:
 network feature extraction with PMI
 
+### sgbt.ipynb:
+rating prediction with stochastic gradient boosted trees
+
+To set up pyspark in ipynb:
++ Follow:  http://ramhiser.com/2015/02/01/configuring-ipython-notebook-support-for-pyspark/
++ Use 
+`PYSPARK_DRIVER_PYTHON=ipython PYSPARK_DRIVER_PYTHON_OPTS='notebook' $SPARK_HOME/bin/pyspark`
+will launch pyspark within ipython notebook.
