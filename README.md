@@ -2,10 +2,10 @@
 
 This is a project for Big Data Analytics at Columbia University.
 
-# Project Overview
+## Project Overview
 Recipe recording and sharing has been around for many years. Recipe collections containing ingredient combinations yield information about cooking fundamentals and user preferences. We construct an ingredient network to study the importance of each ingredient, capture the relationships between ingredients and explore reasonable combinations. We also perform experiments, to predict ratings of newly generated recipes using features derived from the network and accordingly suggest the recipes to the user. 
 
-# Package Description
+## Package Description
 We provided python implementation for our recipe generator. To be able to run the package, one need to first download the pre-stored file containing cliques (clique.csv), nodes (Nodes.csv) and edges (Edges.csv), pre-trained boosted tree model (SGBT directory), and network features (features.csv, SVDfactor.npy). Users can then run the python script generator.py to see the results.
 
 generator.py: this is the script to 
